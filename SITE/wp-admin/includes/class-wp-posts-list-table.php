@@ -583,6 +583,7 @@ class WP_Posts_List_Table extends WP_List_Table {
 	 */
 	protected function get_sortable_columns() {
 		return array(
+			'id'	  => 'id',
 			'title'    => 'title',
 			'parent'   => 'parent',
 			'comments' => 'comment_count',
@@ -1711,3 +1712,4 @@ class WP_Posts_List_Table extends WP_List_Table {
 <?php
 	}
 }
+

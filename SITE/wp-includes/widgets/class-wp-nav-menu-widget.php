@@ -59,6 +59,11 @@
 			'fallback_cb' => '',
 			'menu'        => $nav_menu
 		);
+		if (get_template()=='Yasmin')
+		{
+			$nav_menu_args['walker']= new My_Walker_Nav_Menu();
+			$nav_menu_args['link_after']= ' | ';
+		}
 
 		/**
 		 * Filter the arguments for the Custom Menu widget.
@@ -150,3 +155,4 @@
 		<?php
 	}
 }
+

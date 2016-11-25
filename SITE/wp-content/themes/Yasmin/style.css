@@ -464,7 +464,7 @@ ul.social li {
     font-size: 13px;
     padding: 5px 10px;
     position: relative;
-    text-transform: none;
+    text-transform: capitalize;
     width: 140px;
     font-weight: 400;
     text-align: left;
@@ -498,8 +498,8 @@ ul.social li {
 #subnav li.sfHover ul {
     left: auto;
 }
-    
-    
+
+
 /* SEARCH FORM   */
 
 
@@ -552,10 +552,10 @@ ul.social li {
     float: right;
     cursor: pointer;
     margin: 0px 0px 0px 0px;
-}   
-    
-    
-    
+}
+
+
+
 /*Callout   */
 
 #callout {
@@ -607,7 +607,7 @@ ul.social li {
 }
 
 .leftbox h2 a {
-    
+
     color:#fcb60b;
 }
 .leftbox h2 a:hover,
@@ -674,7 +674,7 @@ ul.social li {
 
 .welcome ul {
     list-style: circle;
-    margin-left: 15px; 
+    margin-left: 15px;
 }
 
 .welcome a {
@@ -735,7 +735,7 @@ img.overlay{
     left:10px;
     z-index:100;
     -webkit-border-radius: 5px;
-    border-radius: 5px; 
+    border-radius: 5px;
     background:#fff;
     padding:5px;
     display:none;
@@ -793,6 +793,11 @@ img.overlay{
     font-weight: 700;
     color: #000;
     margin-bottom: 5px;
+}
+
+.title h1, .title h1 a, .title h1 a:visited {
+    font-family: Bitter, Helvetica, "DengXian", "Microsoft YaHei", "STHeiti Light", "STHeiti", "LiHei Pro Medium", "Apple LiGothic Medium", "SimHei", Arial, sans-serif;
+    text-transform: capitalize;
 }
 
 .entry,.bentry {
@@ -1169,8 +1174,8 @@ ol.commentlist li .comment-meta,#respond label small {
 
 ol.commentlist li ul.children li.depth-2,ol.commentlist li ul.children li.depth-3,ol.commentlist li ul.children li.depth-4,ol.commentlist li ul.children li.depth-5 {
     margin: 0 0 0 50px;
-}   
-    
+}
+
 
 /* Pagenavi */
 
@@ -1225,7 +1230,7 @@ ol.commentlist li ul.children li.depth-2,ol.commentlist li ul.children li.depth-
     text-align: center;
     float: left;
     margin-right: 4px;
-}   
+}
 
 
 /*Footer*/
@@ -1316,12 +1321,78 @@ h3.bothead {
 .fcred,.fcred a, .fcred a:visited {
     color: #e5f1fe;
 }
+.intro-module {
+    padding-left: 10px;
+}
 
+.intro-module .title h2{
+    text-transform: capitalize;
+}
 
+.basic-info {
+    text-transform: capitalize;
+}
 
+.basic-info .email_addr,
+.basic-info .fax_num {
+    text-transform: none;
+}
 
+.intro-row>div{
+    display: table-cell;
+}
 
+.basic-info .icon {
+    padding-right: 15px;
+    font-size: 20px;
+}
 
+.intro-row {
+    line-height: 25px;
+}
+.intro-img img {
+    max-height:250px;
+    float:right;
+    margin-right: 20px;
+}
+.intro-hr {
+    margin: 20px 30px 20px 10px;
+}
+
+.main-intro {
+    margin-bottom: 20px;
+}
+
+.each-people {
+    margin-bottom:15px;
+}
+.each-people>div {
+    display: table-cell;
+}
+
+.each-people ul{
+    list-style-type:none;
+}
+.each-people ul li{
+    width: 200px;
+}
+.each-people ul li span{
+    margin-right:5px;
+}
+
+.each-people .candidate {
+    color:#f1b531;
+    width:75px;
+}
+.dis-people .title h1{
+    margin-bottom: 0px;
+}
+.dis-people .title{
+    padding-bottom: 0px;
+}
+.dis-people .split{
+    margin-bottom: 5px;
+}
 
 /* ************************************* */
 /* ICONMOOM使用 */

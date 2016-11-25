@@ -185,7 +185,7 @@ class WP_Terms_List_Table extends WP_List_Table {
 			$columns['posts'] = _x( 'Count', 'Number/count of items' );
 		}
 
-		return $columns;
+		return apply_filters("manage_{$this->screen->taxonomy}_taxonomy_columns", $columns );
 	}
 
 	/**
@@ -193,13 +193,14 @@ class WP_Terms_List_Table extends WP_List_Table {
 	 * @return array
 	 */
 	protected function get_sortable_columns() {
-		return array(
+		$res = array(
 			'name'        => 'name',
 			'description' => 'description',
 			'slug'        => 'slug',
 			'posts'       => 'count',
 			'links'       => 'count'
 		);
+		return apply_filters("manage_{$this->screen->taxonomy}_taxonomy_sortable_columns", $res);
 	}
 
 	/**

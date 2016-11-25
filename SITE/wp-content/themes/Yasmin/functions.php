@@ -3,7 +3,7 @@
 include ( 'metabox.php' );
 include ( 'cpt.php' );
 include ( 'guide.php' );
-
+include ('initresearch.php');	//custom taxonomy "research"
 
 /* SIDEBARS */
 if ( function_exists('register_sidebar') )
@@ -80,7 +80,16 @@ function wpe_excerpt($length_callback='', $more_callback='') {
     echo $output;
 }
 
-
+function map_slug($slug)
+{
+	switch ($slug)
+	{
+		case 'ph-d':
+			$slug = 'PH.D';
+			break;
+	}
+	return str_replace('_',' ',$slug);
+}
 // 截断title
 function yasmin_title($title_length=-1)
 {
@@ -92,6 +101,16 @@ function yasmin_title($title_length=-1)
 	$output = mb_substr($output, 0, $title_length,'utf-8');
 	if($len>$title_length) $output.='...';
 	echo $output;
+}
+
+// people-category的排序函数
+
+function people_category_sort($a, $b)
+{
+	$data_a = (int)get_term_meta($a->term_id, 'people_cat_priority', true);
+	$data_b = (int)get_term_meta($b->term_id, 'people_cat_priority', true);
+	if($data_a== $data_b) return 0;
+	return ($data_a<$data_b)?1:-1;
 }
 
 /* PAGE NAVIGATION */
@@ -368,4 +387,59 @@ class My_Walker_Nav_Menu extends Walker {
 
 } // Walker_Nav_Menu
 
+// 注册“成员”文章类型
+	include_once('nvg_manager/people-post-type.php');
+// 注册“成员”的分类类型
+	include_once ('nvg_manager/people-category.php');
+// 注册“研究方向”的分类类型
+	include_once ('nvg_manager/research-category.php');
+
+// 给“文章”添加一个自定义面板，用于添加站内作者关联
+function author_info_metabox() {
+	//“简介”表单信息
+	if ( function_exists('add_meta_box') ) {
+		add_meta_box(
+			'author_info',
+			'站内成员关联',
+			'author_info_meta_box',
+			'post',
+			'side',
+			'high'
+		);
+	}
+}
+function author_info_meta_box($post) {
+	// 获取之前存储的值
+	$meta_box_value = get_post_meta($post->ID, 'author_info_value', true);
+	echo '<input type="hidden" name="author_info_value_noncename" id="author_info_value_noncename" value="'.wp_create_nonce( plugin_basename(__FILE__) ).'" />';
+	echo '<input type="text" size="32" name="author_info_value" value="'.$meta_box_value.'" /><br />';
+	echo '<p>如果此文章的作者是站内成员，请添加成员的id，在【成员管理】页可查询，多个成员之间请用半角英文逗号隔开</p>';
+}
+
+function author_info_save_meta_box($post_id){
+	if(!isset($_POST['author_info_value_noncename'])){
+		return $post_id;
+	}
+	if ( !wp_verify_nonce( $_POST['author_info_value_noncename'], plugin_basename(__FILE__) ))  {
+		return $post_id;
+	}
+
+	//检查权限
+	if ( !current_user_can( 'edit_post', $post_id )){
+		return $post_id;
+	}
+
+	$data = $_POST['author_info_value'];
+	$prev = get_post_meta($post_id, 'author_info_value',true);
+	if($prev == "")
+		add_post_meta($post_id, 'author_info_value', $data, true);
+	elseif($data != $prev)
+		update_post_meta($post_id, 'author_info_value', $data);
+	elseif($data == "")
+		delete_post_meta($post_id, 'author_info_value', $prev);
+	return $post_id;
+}
+
+add_action( 'add_meta_boxes', 'author_info_metabox' );	//添加表单信息
+add_action( 'save_post', 'author_info_save_meta_box' );	//保存表单信息
 ?>
