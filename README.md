@@ -1,4 +1,5 @@
 # NVG_HomePage
+
 ## Platform
 Based on **WordPress 4.5.3** and Theme **[Yasmin](http://demo.fabthemes.com/yasmin/)**
 
@@ -20,6 +21,13 @@ Based on **WordPress 4.5.3** and Theme **[Yasmin](http://demo.fabthemes.com/yasm
 由于博客需要明确作者，请在自定义面板【站内成员关联】内填入相应作者ID（作者ID可在【成员管理】内查看）
 ### 人员队伍
 显示小组的所有成员
+#### 前台显示
+1. 【人员队伍】页面
+    按分类归档出所有的成员，点击可以进入每个成员各自的主页
+2. 【个人主页】页面
+    显示个人的基本信息（成员分类，所属机构，通讯地址，邮箱，电话，传真），未设置的字段将不会显示
+    显示其他详细个人介绍，其中“Introduction, Positions, Honors and Awards, Recent Projects, Recent Interests”都是自己在后台设置的，“Selected Paper”是通过将Publication里的文章设置作者关联来显示的，点每个文章的链接会进入该文章的详情
+
 #### 成员分类
 在后台【成员管理-成员分类】内管理：
 
@@ -41,6 +49,7 @@ Based on **WordPress 4.5.3** and Theme **[Yasmin](http://demo.fabthemes.com/yasm
 
 ### 发表成果
 添加新发表成果的方式为：发布一篇文章，将其分类设置为“发表成果”
+>请在【自定义字段】里选择【paper_reference_name】，设置这篇paper在成员主页的PAPER列表里显示的名字
 
 ### 研究方向
 在【文章-Researches】里管理：

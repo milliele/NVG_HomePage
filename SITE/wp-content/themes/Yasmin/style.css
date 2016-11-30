@@ -717,12 +717,18 @@ img.index-wideimg {
 
 .panelpost a {
     line-height: 160%;
-    margin-left: 10px;
+    margin-left: 2px;
     color: #1c1f2a;
     font-size: 14px;
     width: 100%;
 }
-
+.panelpost span a {
+    line-height: 160%;
+    margin-left: 0px;
+    color: #1c1f2a;
+    font-size: 14px;
+    width: 100%;
+}
 .panelpost a>span {
     color: #1c355e;
     margin-right: 10px;
@@ -759,6 +765,63 @@ img.overlay{
 .post .title {
 	margin-top: 10px;
 	padding-bottom: 10px;
+}
+.post .postlink{
+	padding-bottom: 10px;
+}
+.post .postlink span{
+	margin-right: 10px;
+} 
+.post .postlink a{
+	color: #1c355e;
+
+}
+.post .postlink a:hover,
+.post .postlink a:active {
+    color: #0048bb;
+}
+
+.post_indexpanel {
+    margin-bottom: 35px!important;
+}
+
+.post_indexpanel .post_indexpanel-title {
+    height:37px;
+    background-color: #293e6b;
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.post_indexpanel .post_indexpanel-title h2{
+    margin: 4px 2px 0 15px;
+    font-size: 20px;
+    font-weight: 700;
+    float:left;
+}
+
+.post_indexpanel-title .en_name{
+    float: left;
+ 	font-size:12px;
+    margin: 14px 0 0 0;
+    font-weight: 600;
+}
+
+.post_indexpanel-title .toall{
+    margin-top: 18px;
+    margin-right: 8px;
+    font-size: 12px;
+    float: right;
+    text-transform: capitalize;
+    font-weight: 400;
+}
+
+.post_indexpanel-title .toall a {
+    color:#dfd0a5;
+}
+.post_indexpanel-title .toall a:hover,
+.post_indexpanel-title .toall a:active {
+    color:#fcb60b;
 }
 
 .portype {

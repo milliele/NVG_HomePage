@@ -9,8 +9,44 @@
 			<hr class="split">
 		<?php endif; $cnt=$cnt+1;?>
 		<div class="title">
-			<h3><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title(); ?>"><?php the_title(); ?></a></h3>
-			<div class="postmeta"> 	<span>Posted by <?php the_author_posts_link(); ?></span> | <span><?php the_time('l, n F Y'); ?></span> | <span><?php the_category(', '); ?></span> </div>
+			<h3>
+				【<?php the_category(', ');?>】
+				<a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title(); ?>"><?php the_title(); ?></a>
+			</h3>
+			<div class="postmeta"> 	<span>Posted by <?php the_author_posts_link(); ?></span> | <span><?php the_time('l, n F Y'); ?></span> 
+					<?php
+						//研究方向
+						$term_list = wp_get_post_terms(get_the_ID(), 'research');
+						foreach ($term_list as $te)
+						{
+							$args = array(
+								'post_type' => 'post',
+								'tax_query' => array(
+									'relation' => 'AND',
+									array(
+										'taxonomy' => 'category',
+										'field'    => 'slug',
+										'terms'    => 'researches',
+									),
+									array(
+										'taxonomy' => 'research',
+										'field'    => 'slug',
+										'terms'    => $te->slug
+									)
+								)
+							);
+							$query_research = new WP_Query( $args );
+							if($query_research->have_posts()){
+								echo "| <span>";
+								$query_research->the_post();
+								echo "<a href='".get_the_permalink()."'>";
+								echo ucwords(map_slug($term_list[0]->slug))."</a>";
+								echo "</span>";
+							}
+							wp_reset_postdata();
+						}
+
+						?> </div>
 		</div>
 	</div>
 

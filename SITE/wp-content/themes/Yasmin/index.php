@@ -3,10 +3,10 @@
 <div class="container intro" id="feature">
 	<div class="six columns">
 	<div class="welcome">
-		<h2>我们的团队	Our Team</h2>
+		<h2>我们的团队 Our Team</h2>
 		<p>网络视频组隶属于北京大学计算机所，目前拥有一位教授，一位副教授，两名博士研究生以及六名硕士研究生。</p>
 		<p>The Net Video Group (NVG) locates at Peking University. Currently we have one professor and one associate professor, two PhD students and six Master students.</p>
-		<h2>研究方向&nbsp;&nbsp;&nbsp;&nbsp;Our Interests</h2>
+		<h2>研究方向 Our Interests</h2>
 		<ul>
 			<?php
 				$args = array("taxonomy"=>"research");
@@ -83,14 +83,16 @@
 			<h2>新闻动态</h2>
 			<span class="en_name">news</span>
 			<span class="toall">
-				<?php $bloglink = ft_of_get_option('fabthemes_blog_page'); ?> <a href="<?php echo get_page_link($bloglink); ?>">View All <span class="icon-forward3"></span></a>  
+				<?php $bloglink=get_site_url(null,"?cat=7,8,10"); ?>
+				<a href="<?php echo $bloglink; ?>">View All <span class="icon-forward3"></span></a>  
 			</span>
 		</div>
 	
-	 	<?php 	$query = new WP_Query( array( 'category_name' =>'news', 'posts_per_page' =>10 ) );
+	 	<?php 	$query = new WP_Query( array( 'category_name' =>'blog,news,events', 'posts_per_page' =>10 ) );
 	           	if ($query->have_posts()) : while ($query->have_posts()) : $query->the_post();?>
 	
-			<div class="panelpost">
+			<div class="panelpost">	
+				<span>【<?php the_category(', '); ?>】</span>
 				<a href="<?php the_permalink() ?>"><?php yasmin_title(36); ?><span><?php the_time('m-d'); ?></span></a>	
 			</div>
 	
@@ -101,7 +103,8 @@
 			<h2>通知公告</h2>
 			<span class="en_name">announcement</span>
 			<span class="toall">
-				<?php $bloglink = ft_of_get_option('fabthemes_blog_page'); ?> <a href="<?php echo get_page_link($bloglink); ?>">View All <span class="icon-forward3"></span></a>  
+				<?php $bloglink=get_site_url(null,"?cat=9"); ?>
+				<a href="<?php echo $bloglink; ?>">View All <span class="icon-forward3"></span></a>  
 			</span>
 		</div>
 	

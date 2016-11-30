@@ -7,32 +7,54 @@
 
 <div id="left" class="eleven columns">
 	<?php
-	$temp = $wp_query;
-	$wp_query= null;
-	$wp_query = new WP_Query(array('category_name' =>'researches'));
+	$query = new WP_Query(array('category_name' =>'researches', 
+				'orderby' => 'ID',
+				'order'   => 'ASC',
+				));
 	//$wp_query->query('paged='.$paged);
 	?>
-	<?php while ($wp_query->have_posts()) : $wp_query->the_post(); ?>
-		
+	<?php while ($query->have_posts()) : $query->the_post(); ?>
+			
 		<div class="post" id="post-<?php the_ID(); ?>">
+			<?php
+				$linka="";
+				$linkp="";
+		
+				$args=array("taxonomy"=>"research");
+				$res=get_categories($args);
+				$title=get_the_title();
+				$title_en="";
+				foreach($res as $cat)
+				{
+					if($title==$cat->name)
+					{
+						$linka=get_site_url(null,"?cat=6&research=".$cat->slug);
+						$linkp=get_site_url(null,"?cat=69&research=".$cat->slug);
+						$title_en=map_slug($cat->slug);
+					}
+				}	
+				?>
 			<div class="title">
-				<h2><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title(); ?>"><?php the_title(); ?></a></h2>
-				<div class="postmeta"> 	<span>Posted by <?php the_author_posts_link(); ?></span> | <span><?php the_time('l, n F Y'); ?></span> | <span><?php the_category(', '); ?></span> </div>
+				<h2><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title(""," ".$title_en); ?>">
+					<?php the_title(""," <br />".$title_en); ?>
+				</a></h2>
 			</div>
-
+			<div class="postlink">	
+				<span><a href="<?php echo $linka; ?>">Updates</a></span>
+				<span><a href="<?php echo $linkp; ?>">Publication</a></span>
+			</div>
+		
 			<div class="entry">
-			<?php $image_attr = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'top_feature'); ?>	
-				<img src="<?php echo $image_attr[0]; ?>" class="postim scale-with-grid"  >
-				<?php wpe_excerpt('wpe_excerptlength_archive', ''); ?>
-				<div class="clear"></div>
-			</div>
+					<?php the_content('Read the rest of this entry &raquo;'); ?>
+					<div class="clear"></div>
+			</div>	
 		</div>
 
 	<?php endwhile; ?>
 
 	<?php getpagenavi(); ?>
 	
-	<?php $wp_query = null; $wp_query = $temp;?>	
+	<?php wp_reset_postdata(); ?>	
 				
 </div>
 

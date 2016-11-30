@@ -9,22 +9,12 @@
 			<hr class="split">
 		<?php endif; $cnt=$cnt+1;?>
 		<div class="title">
-			<h3><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title(); ?>"><?php the_title(); ?></a></h3>
-			<div class="postmeta"> 	<span><?php
-					//作者
-					$aus = explode(",",get_post_meta(get_the_ID(),'author_info_value',true));
-					$query = new WP_Query( array( 'post_type' => 'people', 'post__in' => $aus ) );
-					$is_emp = true;
-					while($query->have_posts()){
-						$query->the_post();
-						$en_name = ucwords(get_post_meta(get_the_ID(),'en_name_value', true));
-						if($is_emp) $is_emp=false;
-						else echo ", ";
-						echo "<a href='".get_the_permalink()."'>".$en_name;
-						echo "</a>";
-					}
-					wp_reset_postdata();
-					?></span> | <span><?php the_time('l, n F Y'); ?></span> | <span><?php
+			<h3>
+				【<?php the_category(', '); ?>】
+				<a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title(); ?>"><?php the_title(); ?></a>
+			</h3>
+			<div class="postmeta"> 	<span>Posted by <?php the_author_posts_link(); ?></span> | <span><?php the_time('l, n F Y'); ?></span> 
+					<?php
 						//研究方向
 						$term_list = wp_get_post_terms(get_the_ID(), 'research');
 						foreach ($term_list as $te)
@@ -45,17 +35,18 @@
 									)
 								)
 							);
-							$query = new WP_Query( $args );
-							while($query->have_posts()){
-								$query->the_post();
+							$query_research = new WP_Query( $args );
+							if($query_research->have_posts()){
+								echo "| <span>";
+								$query_research->the_post();
 								echo "<a href='".get_the_permalink()."'>";
-								break;
+								echo ucwords(map_slug($term_list[0]->slug))."</a>";
+								echo "</span>";
 							}
 							wp_reset_postdata();
-							echo ucwords(map_slug($term_list[0]->slug))."</a>";
 						}
 
-					?></span> </div>
+						?> </div>
 		</div>
 	</div>
 
