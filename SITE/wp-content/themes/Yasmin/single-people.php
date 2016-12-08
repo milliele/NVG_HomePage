@@ -130,13 +130,13 @@
                                 $data = get_post_meta(get_the_ID(), 'author_info_value',true);
                                 if(preg_match("/(^".$my_id."$)|(^".$my_id.",\w+)|(\w+,".$my_id."$)|(\w+,".$my_id.",\w+)/",$data))
                                 {
-                                    if($is_emp) { $content = "<ul>";$is_emp=false;}
+                                    if($is_emp) { $content = "<ol>";$is_emp=false;}
                                     $til = get_post_meta(get_the_ID(),'paper_reference_name',true);
                                     $url = get_the_permalink();
                                     $content.="<li><a href='".$url."'>".$til."</a></li>";
                                 }
                             }
-                            if(!empty($content)) $content.="</ul>";
+                            if(!empty($content)) $content.="</ol>";
                             wp_reset_postdata();
                             break;
                         case "recent_blog":
