@@ -91,9 +91,9 @@ function map_slug($slug)
 	return str_replace('_',' ',$slug);
 }
 // 截断title
-function yasmin_title($title_length=-1)
+function yasmin_title($title_length=-1, $output = "")
 {
-	$output = get_the_title();
+	if($output=="") $output = get_the_title();
 	if($title_length == -1){
 		echo $output;
 	}

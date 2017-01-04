@@ -46,9 +46,9 @@
 		<div class="flexslider">
 		    <ul class="slides">
 			
-		    <?php 	$count = ft_of_get_option('fabthemes_slide_number');
-					$slidecat = ft_of_get_option('fabthemes_slide_categories');
-					$query = new WP_Query( array( 'cat' => $slidecat,'posts_per_page' =>$count ) );
+		    <?php 	//$count = ft_of_get_option('fabthemes_slide_number');
+					//$slidecat = ft_of_get_option('fabthemes_slide_categories');	
+				$query = new WP_Query( array( 'tag' =>'showcase-wall', 'posts_per_page' =>10 ) );
 		           	if ($query->have_posts()) : while ($query->have_posts()) :
 						$query->the_post();
 						if(get_post_thumbnail_id(get_the_ID())!=""):?>
@@ -61,6 +61,7 @@
 					</div>
 			</li>
 			<?php endif;endwhile; endif; ?>
+			<?php  ?>
 		    </ul>
 		</div>
 		</div>
@@ -92,7 +93,7 @@
 	           	if ($query->have_posts()) : while ($query->have_posts()) : $query->the_post();?>
 	
 			<div class="panelpost">	
-				<span>【<?php the_category(', '); ?>】</span>
+				<span>【<?php the_category(', ');?>】</span>
 				<a href="<?php the_permalink() ?>"><?php yasmin_title(36); ?><span><?php the_time('m-d'); ?></span></a>	
 			</div>
 	
