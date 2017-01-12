@@ -442,4 +442,5 @@ function author_info_save_meta_box($post_id){
 
 add_action( 'add_meta_boxes', 'author_info_metabox' );	//添加表单信息
 add_action( 'save_post', 'author_info_save_meta_box' );	//保存表单信息
+
 ?>

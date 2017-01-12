@@ -432,12 +432,14 @@ ul.social li {
     float: left;
     list-style-type: none;
     font-weight: 400;
+	
+	//margin-right: 50px;
 }
 
 #subnav li a {
     color: #cacac8;
     display: block;
-    padding: 10px 10px 11px 10px; /* 第三个数控制子菜单与主菜单的距离*/
+    padding: 10px 50px 11px 10px; /* 第三个数控制子菜单与主菜单的距离*/
     position: relative;
     text-decoration: none;
 }
@@ -1376,7 +1378,8 @@ h3.bothead {
 }
 
 #footer {
-    background: #666f76;
+    //background: #666f76;
+	background: #242738;
     padding: 25px 0px;
     text-align: center;
 }
